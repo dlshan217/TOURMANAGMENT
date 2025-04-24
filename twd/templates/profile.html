@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - </title>
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #1d1d1f;
+    }
+
+    .nav_div {
+      background-color: #3c6e71;
+      padding: 20px;
+    }
+
+    .nav_head {
+      color: white;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .head {
+      text-align: center;
+      font-size: 36px;
+      margin: 40px 0 20px;
+      color: #3c6e71;
+    }
+
+    .main_div {
+      max-width: 500px;
+      margin: auto;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .main_div:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .name {
+      font-size: 20px;
+      margin: 20px 0;
+      font-weight: 500;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .main_div {
+        margin: 20px;
+        padding: 30px 20px;
+      }
+
+      .head {
+        font-size: 28px;
+      }
+
+      .name {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav_div">
+      <nav class="nav"><h1 class="nav_head">TWD/h1>
+   </nav>
+ </div>
+ <h1 class="head">PROFILE</h1>
+ <div class="main_div">
+  {% for i in form %}
+  <h2 class="name"> Name: {{i.username}}</h2>
+  <h2 class="name">Email: {{i.email}}</h2>
+  <h2 class="name"> phone: {{i.phone}}</h2>
+
+
+  {% endfor %}
+ </div>
+ 
+  
+</body>
+</html>
+
+
+
+

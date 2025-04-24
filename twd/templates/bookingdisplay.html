@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+</style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details - TWD</title>
+    <link rel="stylesheet" href="{% static 'css/bbookingdisplay.css' %}">
+</head>
+<body>
+<div class="container">
+    <nav class="nav">
+        <h1 class="nav_head">TWD </h1>
+        <a class="back" href="{% url 'userhome' %}">Home</a>
+    </nav>
+    
+    <h1 class="bhead">Booking Details</h1>
+    <div class="main_div">
+        {% for i in booking %}
+        <div class="booking_card">
+            <h2 class="name">Full Name: {{ i.fullname }}</h2>
+            <h2 class="ptitle">Package: {{ i.package.title }}</h2>
+            <h2 class="pprice">₹ {{ i.package.price }}</h2>
+            <h3 class="ppeople">People: {{ i.number_of_people }}</h3>
+            <h3 class="pbooking">Date: {{ i.booking_date }}</h3>
+            <h3 class="pphone">Phone: {{ i.phone }}</h3>
+        </div>
+        {% empty %}
+        <p class="no_data">No bookings found.</p>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
