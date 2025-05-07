@@ -7,11 +7,11 @@ class Usersign_up(models.Model):
     phone=models.IntegerField()
 
 class Vendorregister(models.Model):
-    email=models.EmailField()
-    password=models.CharField(max_length=20)
-    businessname=models.CharField(max_length=30)
-    businnesregistornumber=models.CharField(max_length=5)
-    phone = models.CharField(max_length=15) 
+    email = models.EmailField()
+    password = models.CharField(max_length=20)
+    businessname = models.CharField(max_length=30)  
+    businnesregistornumber = models.CharField(max_length=5)
+    phone = models.CharField(max_length=15)
 
 
 

@@ -12,7 +12,6 @@ urlpatterns = [
       path('userlogout/',v.uselogout,name='userlogout'),
       path('vendorhome/',v.vendorhome,name='vendorhome'),
       path('vendorlogin/', v.vendorlogin, name='vendorlogin'),
-
       path('vendorlogout/',v.vendorlogout,name='vendorlogout'),
       path('vcreate/',v.vcreate,name='vcreate'),
       path('item/<int:pk>/delete/',v.vendordelete,name='vendordelete'),

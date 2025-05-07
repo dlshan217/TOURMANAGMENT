@@ -66,7 +66,7 @@ def userlogin(request):
 
 
 def userhome(request):
-    pk=Packagecreate.objects.all()
+    pk=Packagecreate.objects.filter(aprovel=True)
     return render(request,"userhome.html",{'package':pk})
 
     
@@ -125,18 +125,32 @@ def vendorlogout(request):
 def vcreate(request):
     if request.method == 'POST':
         form = vpackageform(request.POST, request.FILES)
+        
         if form.is_valid():
+            # Retrieve the vendor_id from session
             vendor_id = request.session.get('vuser.id')
-            ven = Vendorregister.objects.get(id=vendor_id)  
+            
+            # Check if the vendor_id exists in session
+            if not vendor_id:
+                return redirect('vendorlogin')  # Redirect to login if not logged in
+
+            # Get the vendor object from DB
+            try:
+                ven = Vendorregister.objects.get(id=vendor_id)
+            except Vendorregister.DoesNotExist:
+                return redirect('vendorlogin')  # Handle missing vendor
+
+            # Save the package associated with the vendor
             p = form.save(commit=False)
-            p.vendor = ven 
+            p.vendor = ven
             p.save()
-            return redirect('vendorhome')
+
+            return redirect('vendorhome')  # Redirect on success
     else:
         form = vpackageform()
-    return render(request, "vcreate.html", {'form': form}) 
+        
+    return render(request, "vcreate.html", {'form': form})
 
-    
 
 def vendordelete(request,pk):
         item=get_object_or_404(Packagecreate,pk=pk)
@@ -199,4 +213,5 @@ def profile(request):
 
 def payment(request):
     return render(request,"payment.html")
+
 
