@@ -1,1 +1,0 @@
-*.egg-info/  rm --cached db.sqlite3
