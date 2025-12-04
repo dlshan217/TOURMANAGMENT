@@ -1,4 +1,4 @@
-# 🌍 TWD — Travel & Tour Management System
+# TWD — Travel & Tour Management System
 
 TWD is a full-stack **Django-based travel booking platform** that allows users to browse approved tour packages, book trips, make payments, and manage profiles.  
 Vendors can register, create tour packages, and manage bookings — all with a clean, modern UI.
@@ -26,7 +26,7 @@ Vendors can register, create tour packages, and manage bookings — all with a c
 
 ---
 
-### 🛠 Admin (Django Admin Panel)
+###  Admin (Django Admin Panel)
 - Approve or reject tour packages  
 - Manage users, vendors, packages, bookings  
 - Admin approval required for packages to appear to users
