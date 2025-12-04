@@ -33,13 +33,10 @@
       margin-bottom: 30px;
     }
 
-    .frm {
-      width: 100%;
-    }
-
     .frm p {
       text-align: left;
       margin-bottom: 15px;
+      position: relative;
     }
 
     .frm label {
@@ -50,11 +47,30 @@
 
     .frm input {
       width: 100%;
-      padding: 10px;
+      padding: 10px 40px 10px 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
       margin-bottom: 15px;
       box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    /* Eye button */
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 39px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .pw-toggle svg {
+      width: 22px;
+      height: 22px;
+      color: #444;
     }
 
     .submit_btn {
@@ -66,6 +82,8 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      margin-top: 10px;
     }
 
     .submit_btn:hover {
@@ -93,18 +111,54 @@
 <body>
   <div class="container">
     <h1 class="heading">Sign Up</h1>
-    <div class="main_div">
-      <form class="frm" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="submit_btn" type="submit">Sign Up</button>
-      </form>
-      <div class="mini_div">
-        <p>Already have an account? 
-          <a href="{% url 'userlogin' %}">Login</a>
-        </p>
-      </div>
+
+    <form class="frm" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <!-- Show/Hide password buttons are added by JS -->
+
+      <button class="submit_btn" type="submit">Sign Up</button>
+    </form>
+
+    <div class="mini_div">
+      <p>Already have an account? 
+        <a href="{% url 'userlogin' %}">Login</a>
+      </p>
     </div>
   </div>
+
+  <!-- Password Show/Hide Script -->
+  <script>
+    document.querySelectorAll("input.password-input").forEach(function(input){
+      // Create toggle button
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.classList.add("pw-toggle");
+      btn.innerHTML = `
+        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <svg class="eye-closed" style="display:none;" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.64 21.64 0 0 1 5.8-4.37"/>
+          <path d="M1 1l22 22"/>
+        </svg>
+      `;
+
+      // Insert after input
+      input.parentNode.appendChild(btn);
+
+      // Toggle logic
+      btn.addEventListener("click", function(){
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+
+        btn.querySelector(".eye-open").style.display = isHidden ? "none" : "inline";
+        btn.querySelector(".eye-closed").style.display = isHidden ? "inline" : "none";
+      });
+    });
+  </script>
+
 </body>
 </html>

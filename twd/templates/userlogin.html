@@ -71,11 +71,32 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      margin-top: 10px;
     }
 
     .lg:hover {
       background-color: #2a4f50;
       transform: scale(1.05);
+    }
+
+    /* Signup link styling */
+    .signup-link {
+      margin-top: 18px;
+      font-size: 15px;
+      color: #374151;
+    }
+
+    .signup-link a {
+      font-weight: 600;
+      color: #3c6e71;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .signup-link a:hover {
+      color: #274043;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -88,6 +109,12 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button class="lg" type="submit">Login</button>
+
+        <!-- ⭐ NEW Signup Link -->
+        <p class="signup-link">
+          Don't have an account?
+          <a href="{% url 'signup' %}">Create one</a>
+        </p>
       </form>
     </div>
   </div>

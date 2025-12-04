@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ package.title|default:"Untitled" }}</h1>
+  {% if package.image %}
+    <img src="{{ package.image.url }}" alt="{{ package.title }}">
+  {% endif %}
+  <p>{{ package.description }}</p>
+  <p>Price: RS {{ package.price|default:"N/A" }}</p>
+  <p>Date: {% if package.date %}{{ package.date|date:"Y-m-d" }}{% else %}TBA{% endif %}</p>
+{% endblock %}

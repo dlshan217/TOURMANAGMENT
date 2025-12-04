@@ -12,3 +12,4 @@ class PackageAdmin(admin.ModelAdmin):
     list_display = ('title', 'vendor', 'date', 'price', 'aprovel')
     list_filter = ('aprovel',)
     search_fields = ('title', 'businessname')
+

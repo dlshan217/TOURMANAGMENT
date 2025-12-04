@@ -9,7 +9,7 @@ urlpatterns = [
       path('vendorsignup/',v.vendorsignup,name="vendorsignup"),
       path('userlogin/',v.userlogin,name="userlogin"),
       path('userhome/',v.userhome,name="userhome"),
-      path('userlogout/',v.uselogout,name='userlogout'),
+      path('userlogout/', v.userlogout, name='userlogout'),
       path('vendorhome/',v.vendorhome,name='vendorhome'),
       path('vendorlogin/', v.vendorlogin, name='vendorlogin'),
       path('vendorlogout/',v.vendorlogout,name='vendorlogout'),
@@ -21,4 +21,8 @@ urlpatterns = [
       path('vendorbookings/',v.vendorbookings, name='vendorbookings'),
       path('profile/',v.profile, name='profile'),
       path('payment/',v.payment, name='payment'),
+      
+      path('package/<int:pk>/', v.package_detail, name='package_detail'),
+      path('profile/edit/', v.profile_edit, name='profile_edit'),
+
 ]
